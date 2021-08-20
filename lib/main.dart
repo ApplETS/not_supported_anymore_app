@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:io' show Platform;
 import 'package:launch_review/launch_review.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -76,62 +75,57 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildAvailableOnCard() {
     if (Platform.isAndroid) {
-      return InkWell(
-        onTap: () => launchStore(),
-        child: _buildAvailableOnCardByDevice(
-            'Google Play', 'assets/logos/googleplay.png'),
-      );
+      return _buildAvailableOnCardByDevice(
+          'Google Play', 'assets/logos/googleplay.png');
     } else if (Platform.isIOS) {
-      return InkWell(
-        onTap: () => launchStore(),
-        child: _buildAvailableOnCardByDevice(
-            'App Store', 'assets/logos/apple.png'),
-      );
+      return _buildAvailableOnCardByDevice(
+          'App Store', 'assets/logos/apple.png');
     }
 
     return Container();
   }
 
-  Container _buildAvailableOnCardByDevice(var store, var image) {
-    return Container(
-      width: MediaQuery.of(context).size.width / 1.5,
-      height: 100.0,
-      decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.all(Radius.circular(30.0))),
-      child: Row(
-        children: [
-          Expanded(
-              flex: 4,
-              child: Image.asset(
-                image,
-                excludeFromSemantics: true,
-                width: 50,
-                height: 50,
-              )),
-          Expanded(
-            flex: 6,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.available_on,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18.0, color: Colors.white),
-                ),
-                Text(
-                  store,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 21.0, color: Colors.white),
-                ),
-              ],
+  Widget _buildAvailableOnCardByDevice(var store, var image) {
+    return InkWell(
+      onTap: () => LaunchReview.launch(androidAppId: "", iOSAppId: ""), // TODO
+      child: Container(
+        width: MediaQuery.of(context).size.width / 1.5,
+        height: 100.0,
+        decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.all(Radius.circular(30.0))),
+        child: Row(
+          children: [
+            Expanded(
+                flex: 4,
+                child: Image.asset(
+                  image,
+                  excludeFromSemantics: true,
+                  width: 50,
+                  height: 50,
+                )),
+            Expanded(
+              flex: 6,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.available_on,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18.0, color: Colors.white),
+                  ),
+                  Text(
+                    store,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 21.0, color: Colors.white),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
-
-  void launchStore() async {}
 }
