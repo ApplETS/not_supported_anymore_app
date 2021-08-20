@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildAvailableOnCard() {
     if (Platform.isAndroid) {
       return _buildAvailableOnCardByDevice(
-          'Google Play', 'assets/logos/googleplay.png');
+          'Play Store', 'assets/logos/playstore.png');
     } else if (Platform.isIOS) {
       return _buildAvailableOnCardByDevice(
           'App Store', 'assets/logos/apple.png');
