@@ -87,7 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildAvailableOnCardByDevice(var store, var image) {
     return InkWell(
-      onTap: () => LaunchReview.launch(androidAppId: "", iOSAppId: ""), // TODO
+      onTap: () => LaunchReview.launch(
+          androidAppId: "android:ca.etsmtl.applets.etsmobile",
+          iOSAppId: "iOS:557463461",
+          writeReview: false),
       child: Container(
         width: MediaQuery.of(context).size.width / 1.5,
         height: 100.0,
