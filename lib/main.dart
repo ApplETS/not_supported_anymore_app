@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:io' show Platform;
-import 'package:launch_review/launch_review.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -87,10 +87,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildAvailableOnCardByDevice(var store, var image) {
     return InkWell(
-      onTap: () => LaunchReview.launch(
-          androidAppId: "android:ca.etsmtl.applets.etsmobile",
-          iOSAppId: "iOS:557463461",
-          writeReview: false),
+      onTap: () {
+        if (Platform.isAndroid) {
+          _launchURL(
+              "https://play.google.com/store/apps/details?id=ca.etsmtl.applets.etsmobile");
+        } else if (Platform.isIOS) {
+          _launchURL(
+              "https://apps.apple.com/ca/app/%C3%A9tsmobile/id557463461?l=fr");
+        }
+      },
       child: Container(
         width: MediaQuery.of(context).size.width / 1.5,
         height: 100.0,
@@ -131,4 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  void _launchURL(String url) async =>
+      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
 }
