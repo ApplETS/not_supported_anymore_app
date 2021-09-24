@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ))),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Text(
               AppLocalizations.of(context)!.not_supported_title,
               textAlign: TextAlign.center,
@@ -59,10 +59,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.white),
             ),
           ),
-          Text(
-            AppLocalizations.of(context)!.not_supported_subtitle,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18.0, color: const Color(0xfff5f5f5)),
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+            child: Text(
+              AppLocalizations.of(context)!.not_supported_subtitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18.0, color: const Color(0xfff5f5f5)),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 50.0),
