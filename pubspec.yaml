@@ -2,7 +2,7 @@ name: not_supported_anymore_app
 description: The not supported anymore application.
 
 publish_to: "none"
-version: 3.1.0-beta+31298
+version: 3.1.0-beta+31299
 
 environment:
   sdk: ">=2.14.0 <3.0.0"
@@ -17,6 +17,7 @@ dependencies:
   url_launcher: ^6.0.12
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.9.2"
   flutter_test:
     sdk: flutter
 
@@ -26,3 +27,10 @@ flutter:
   
   assets:
     - assets/logos/
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: "LaunchImage"
+  image_path: "assets/logos/launcher_icon.png"
+  adaptive_icon_background: "#EF3F45"
+  adaptive_icon_foreground: "assets/logos/ic_launcher_foreground.png"
