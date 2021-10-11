@@ -1,16 +1,12 @@
-# not_supported_anymore_app
+# Not supported anymore app
 
-A new Flutter project.
+A small project to show a not supported anymore splash screen instead of the previous app. and a link to download the next supported version.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To build this project simply download and install flutter and
+```sh
+$ flutter pub get
+$ flutter run
+```
+If there is a problem whil running `flutter pub get`, make sure you have the right version of flutter and dart by doing `flutter channel stable`, then `flutter upgrade`.

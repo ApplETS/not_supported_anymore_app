@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:io' show Platform;
-import 'package:launch_review/launch_review.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ))),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Text(
               AppLocalizations.of(context)!.not_supported_title,
               textAlign: TextAlign.center,
@@ -59,10 +59,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.white),
             ),
           ),
-          Text(
-            AppLocalizations.of(context)!.not_supported_subtitle,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18.0, color: const Color(0xfff5f5f5)),
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+            child: Text(
+              AppLocalizations.of(context)!.not_supported_subtitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18.0, color: const Color(0xfff5f5f5)),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 50.0),
@@ -87,7 +90,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildAvailableOnCardByDevice(var store, var image) {
     return InkWell(
-      onTap: () => LaunchReview.launch(androidAppId: "", iOSAppId: ""), // TODO
+      onTap: () {
+        if (Platform.isAndroid) {
+          _launchURL(
+              "https://play.google.com/store/apps/details?id=ca.etsmtl.applets.etsmobile");
+        } else if (Platform.isIOS) {
+          _launchURL(
+              "https://apps.apple.com/ca/app/%C3%A9tsmobile/id557463461?l=fr");
+        }
+      },
       child: Container(
         width: MediaQuery.of(context).size.width / 1.5,
         height: 100.0,
@@ -128,4 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  void _launchURL(String url) async =>
+      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
 }
