@@ -1,4 +1,4 @@
-package com.example.not_supported_anymore_app
+package ca.etsmtl.applets.etsmobile.beta
 
 import io.flutter.embedding.android.FlutterActivity
 
